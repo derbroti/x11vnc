@@ -106,6 +106,8 @@ static void record_last_fb_update(void);
 static void check_cursor_changes(void);
 static int choose_delay(double dt);
 
+rfbBool XvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code);
+
 int rawfb_reset = -1;
 int rawfb_dev_video = 0;
 int rawfb_vnc_reflect = 0;

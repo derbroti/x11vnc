@@ -65,6 +65,4 @@ extern int rawfb_reset;
 extern int rawfb_dev_video;
 extern int rawfb_vnc_reflect;
 
-rfbBool XvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code);
-
 #endif /* _X11VNC_SCREEN_H */

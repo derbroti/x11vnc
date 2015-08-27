@@ -115,7 +115,7 @@ int rawfb_vnc_reflect = 0;
  */
 
 
-rfbBool rfbXvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
+rfbBool XvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
 {
 	if (pipeinput_fh == NULL) {
 		return 1;

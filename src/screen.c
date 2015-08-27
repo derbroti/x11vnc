@@ -119,11 +119,21 @@ int rawfb_vnc_reflect = 0;
 
 rfbBool xvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
 {
+	int can_input = 0, uid = 0;
+	ClientData *cd = (ClientData *) cl->clientData;
+
 	if (pipeinput_fh == NULL) {
 		return 1;
 	}
 
-	fprintf(pipeinput_fh, "Xfp %d %d\n", ver, code);
+	if (cd) {
+		uid = cd->uid;
+	}
+	if (! can_input) {
+		uid = -uid;
+	}
+
+	fprintf(pipeinput_fh, "Xfp %d %d %d\n", uid, ver, code);
 	fflush(pipeinput_fh);
 	return check_pipeinput();
 }

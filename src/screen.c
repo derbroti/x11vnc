@@ -114,6 +114,19 @@ int rawfb_vnc_reflect = 0;
  * X11 and rfb display/screen related routines
  */
 
+
+rfbBool rfbXvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
+{
+	if (pipeinput_fh == NULL) {
+		return 1;
+	}
+
+	fprintf(pipeinput_fh, "Xfp %d %d\n", ver, code);
+	fflush(pipeinput_fh);
+	return check_pipeinput();
+}
+
+
 /*
  * Some handling of 8bpp PseudoColor colormaps.  Called for initializing
  * the clients and dynamically if -flashcmap is specified.
@@ -3755,6 +3768,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 			}
 		}
 	}
+
+	screen->xvpHook = &xvpHookHelper;
 
 	install_passwds();
 

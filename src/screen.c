@@ -119,7 +119,7 @@ int rawfb_vnc_reflect = 0;
 
 rfbBool xvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
 {
-	int can_input = 0, uid = 0;
+	int uid = 0;
 	ClientData *cd = (ClientData *) cl->clientData;
 
 	if (pipeinput_fh == NULL) {
@@ -129,7 +129,7 @@ rfbBool xvpHookHelper(struct _rfbClientRec* cl, uint8_t ver, uint8_t code)
 	if (cd) {
 		uid = cd->uid;
 	}
-	if (! can_input) {
+	if (view_only) {
 		uid = -uid;
 	}
 
